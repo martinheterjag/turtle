@@ -17,11 +17,12 @@ KTH, course IS1300 Inbyggda System
 
 
 //functions
+void checkUSART3Input(command* cmd);
 void initUSART(void);
 void USART3InterruptEvent(void);
 void USART3Print(uint8_t ch);
 void USART3PrintString(volatile char* str);
-void checkUSART3Input(command* cmd);
+
 
 
 #endif

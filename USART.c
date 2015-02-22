@@ -24,10 +24,72 @@ static volatile bool newData = false;
 static volatile char recievedCommand[MAX_CHARACTERS];
 static volatile uint8_t charCount = 0;
 
+//++++ handles data if any new input data! ++++
+void checkUSART3Input(command* cmd)
+{
+  //declare the command struct
+  
+  
+  if(newData)
+  {
+    //if the last char was 'return'
+    if(recievedCommand[charCount-1] == '\r')
+    {
+      //char str[MAX_CHARACTERS];
+      
+      //copy input to a temp string to work with.
+      strcpy( cmd->str, (char*) recievedCommand );
+      // reset the command input
+      uint8_t i=0;
+      for(i = 0; i< MAX_CHARACTERS; i++)
+      {
+        recievedCommand[i] = '\0';
+      }
+      charCount = 0;
+      
+      //parse string and compare it to list of commands
+      parseString(cmd);
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//      init USART on PD8(TX) and PD9(RX)
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+      // check if valid command.
+      //&&&&&&&&&&&&&& SAVE NEXT STATE WHILE CHECKING THIS &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+      //&&&&&&&&&&&&&& MAKE checkCommandString() RETURN STATE OR SOMETHING &&&&&&&&&&&&&&&&&&&&&&&&
+      if(checkCommandString(cmd->str))
+      {
+        //confirm command
+        USART3PrintString("valid command \n\r");
+        
+        //cap value at 999 because easier than making bigger + bigger numbers is not necessary for this application
+        if(cmd->value>999)
+        {
+          USART3PrintString("999 is the highest value: \n\rchanging value to 999 \n\r");
+          cmd->value = 999;
+        }
+        
+        // echo command
+        USART3PrintString(cmd->str);
+        USART3PrintString(" ");
+
+        //convert value to string and print it
+        char temp[4] = { (cmd->value>99? (cmd->value/100)   + '0' : ' '),
+                         (cmd->value>9?  (cmd->value/10)%10 + '0' : ' '), 
+                         (               (cmd->value % 10)  + '0'), 
+                         '\0'};
+        USART3PrintString(strcat(temp, "\n\n\r"));
+      }
+      else
+      {
+        // aw, didn't work mate ;(
+        USART3PrintString("invalid command \n\r");
+      }
+      
+    }
+    newData = false;
+  }
+  
+}
+
+
+//++++ init USART on PD8(TX) and PD9(RX) ++++
 void initUSART(void)
 {
   // declare init-structs
@@ -100,7 +162,8 @@ void USART3InterruptEvent(void)
   {
     recievedCommand[charCount-1] = character;
     newData = true;
-  }   
+  }  
+  
 }
 
 
@@ -122,60 +185,8 @@ void USART3PrintString(volatile char* str)
   {
     USART3Print(str[i]);
   }
-  USART3Print('\n');
+  
 }
 
 
-//++++ handles data if any new input data! ++++
-void checkUSART3Input(command* cmd)
-{
-  //declare the command struct
-  
-  
-  if(newData)
-  {
-    //if the last char was 'return'
-    if(recievedCommand[charCount-1] == '\r')
-    {
-      //char str[MAX_CHARACTERS];
-      
-      //copy input to a temp string to work with.
-      strcpy(cmd->str, (char*) recievedCommand);
-      // reset the command input
-      uint8_t i=0;
-      for(i = 0; i< MAX_CHARACTERS; i++)
-      {
-        recievedCommand[i] = '\0';
-      }
-      charCount = 0;
-      
-      //parse string and compare it to list of commands
-      parseString(cmd);
-      
-      // echo command
-      USART3PrintString(strcat(cmd->str, " "));
-      
-      char temp[4] = 
-        {(cmd->value/100 + '0'),
-        (cmd->value/10)%10 + '0', 
-        (cmd->value%100 + '0', 
-        '\0')};
-      USART3PrintString(strcat(temp, "\n\n\r"));
-      
-      
-      //USART3PrintString("\n\r");
-      
-      
-      if(checkCommandString(cmd->str))
-      {
-        USART3PrintString("valid command \n\r");
-      }
-      else
-      {
-        USART3PrintString("invalid command \n\r");
-      }
-      
-    }
-    newData = false;
-  }
-}
+

@@ -11,37 +11,35 @@ author Martin Eriksson
 
 
 //+++ returns true if string is a valid command +++
-bool checkCommandString(char* string)
+bool checkCommandString(char* str)
 {
-  char* cmd = (char*) string;
-      
-  printf("%s", cmd);
+  
   //list of valid commands, (strcmp returns 0 if strings are equal).
-  if      (strcmp(cmd, "forward") == 0)
+  if      (strcmp(str, "forward") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "right") == 0)
+  else if (strcmp(str, "right") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "left") == 0)
+  else if (strcmp(str, "left") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "penup") == 0)
+  else if (strcmp(str, "penup") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "pendown") == 0)
+  else if (strcmp(str, "pendown") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "repeat") == 0)
+  else if (strcmp(str, "repeat") == 0)
   {
     return true;
   }
-  else if (strcmp(cmd, "to") == 0)
+  else if (strcmp(str, "to") == 0)
   {
     return true;
   }

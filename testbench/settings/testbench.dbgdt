@@ -19,7 +19,7 @@
           
           
           
-        <Column0>195</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>103</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -33,7 +33,7 @@
         <DisasmHistory/>
         
         
-      <ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
+      <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
       <TerminalIO>
         
         
@@ -63,7 +63,7 @@
             <Session/>
           </Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd3>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
         <Tabs>
           <Tab>
             <Identity>TabID-22908-26250</Identity>
@@ -71,21 +71,11 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>UART_test</ExpandedNode><ExpandedNode>UART_test/HEADER_FILES</ExpandedNode><ExpandedNode>UART_test/USER</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>testbench</ExpandedNode><ExpandedNode>testbench/HEADER_FILES</ExpandedNode><ExpandedNode>testbench/USER</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd3><Wnd4>
-        <Tabs>
-          <Tab>
-            <Identity>TabID-888-26253</Identity>
-            <TabName>Disassembly</TabName>
-            <Factory>Disassembly</Factory>
-            <Session/>
-          </Tab>
-        </Tabs>
-        
-      <SelectedTab>0</SelectedTab></Wnd4><Wnd5><Tabs><Tab><Identity>TabID-5018-5809</Identity><TabName>Terminal I/O</TabName><Factory>TerminalIO</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-5018-5809</Identity><TabName>Terminal I/O</TabName><Factory>TerminalIO</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3><Wnd5><Tabs><Tab><Identity>TabID-12322-2349</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
     <Editor>
       
       
@@ -98,7 +88,7 @@
       
       
       
-    <Top><Row0><Sizes><Toolbar-01188DE0><key>iaridepm.enu1</key></Toolbar-01188DE0></Sizes></Row0><Row1><Sizes><Toolbar-1F7E5BE8><key>debuggergui.enu1</key></Toolbar-1F7E5BE8></Sizes></Row1><Row2><Sizes><Toolbar-1F7E5CB0><key>armstlink.enu1</key></Toolbar-1F7E5CB0></Sizes></Row2></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>395</Bottom><Right>269</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>247</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>360058</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>578717</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>395</Bottom><Right>197</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>247</yscreen><sizeHorzCX>198389</sizeHorzCX><sizeHorzCY>360058</sizeHorzCY><sizeVertCX>145681</sizeVertCX><sizeVertCY>578717</sizeVertCY></Rect></Wnd4></Sizes></Row0><Row1><Sizes><Wnd5><Rect><Top>-2</Top><Left>195</Left><Bottom>395</Bottom><Right>413</Right><x>195</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>146413</sizeHorzCX><sizeHorzCY>291545</sizeHorzCY><sizeVertCX>159590</sizeVertCX><sizeVertCY>578717</sizeVertCY></Rect></Wnd5></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>200</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>291545</sizeHorzCY><sizeVertCX>198389</sizeVertCX><sizeVertCY>360058</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-03BFB800><key>iaridepm.enu1</key></Toolbar-03BFB800></Sizes></Row0><Row1><Sizes><Toolbar-14873258><key>debuggergui.enu1</key></Toolbar-14873258></Sizes></Row1><Row2><Sizes><Toolbar-14875328><key>armstlink.enu1</key></Toolbar-14875328></Sizes></Row2></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>822</Bottom><Right>177</Right><x>-2</x><y>-2</y><xscreen>369</xscreen><yscreen>373</yscreen><sizeHorzCX>198601</sizeHorzCX><sizeHorzCY>359691</sizeHorzCY><sizeVertCX>96340</sizeVertCX><sizeVertCY>794600</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>822</Bottom><Right>374</Right><x>-2</x><y>-2</y><xscreen>272</xscreen><yscreen>302</yscreen><sizeHorzCX>146394</sizeHorzCX><sizeHorzCY>291225</sizeHorzCY><sizeVertCX>202368</sizeVertCX><sizeVertCY>794600</sizeVertCY></Rect></Wnd3></Sizes></Row0><Row1><Sizes><Wnd5><Rect><Top>-2</Top><Left>372</Left><Bottom>822</Bottom><Right>572</Right><x>372</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>107643</sizeHorzCX><sizeHorzCY>192864</sizeHorzCY><sizeVertCX>107643</sizeVertCX><sizeVertCY>794600</sizeVertCY></Rect></Wnd5></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>122</Bottom><Right>1860</Right><x>-2</x><y>-2</y><xscreen>1862</xscreen><yscreen>124</yscreen><sizeHorzCX>1002153</sizeHorzCX><sizeHorzCY>119576</sizeHorzCY><sizeVertCX>198601</sizeVertCX><sizeVertCY>359691</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 
