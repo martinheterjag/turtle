@@ -185,6 +185,9 @@
       <name>$PROJ_DIR$\main.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\servoControl.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\stm32f30x_conf.h</name>
     </file>
     <file>
@@ -206,6 +209,9 @@
       <name>$PROJ_DIR$\..\stm32f3discovery_fw\STM32F3-Discovery_FW_V1.1.0\Libraries\STM32F30x_StdPeriph_Driver\src\stm32f30x_rcc.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\stm32f3discovery_fw\STM32F3-Discovery_FW_V1.1.0\Libraries\STM32F30x_StdPeriph_Driver\src\stm32f30x_tim.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\stm32f3discovery_fw\STM32F3-Discovery_FW_V1.1.0\Libraries\STM32F30x_StdPeriph_Driver\src\stm32f30x_usart.c</name>
     </file>
   </group>
@@ -216,6 +222,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\servoControl.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\stm32f30x_it.c</name>

@@ -1,4 +1,4 @@
-"C:\Users\Martin\Documents\IAR workspace\Turtle\testbench\main.c"
+"C:\Users\Martin\Documents\IAR workspace\Turtle\servoControl.c"
 -std=c99
 -ferror-limit=100
 -I
@@ -235,7 +235,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\CMSIS\Include
 -D__IAR_COMPILERBASE__=594182
 -D_GOANNA=1
 -D__DATE__="Feb 24 2015"
--D__TIME__="10:56:22"
+-D__TIME__="10:52:28"
 -D__STDC__=1
 -D__STDC_VERSION__=199901L
 -D__STDC_HOSTED__=1

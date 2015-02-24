@@ -1,17 +1,22 @@
 #include "commands.h"
 #include "main.h"
 #include "USART.h"
+#include "servoControl.h"
 #include <stdbool.h>
 #include <stdio.h>
 
-#define TEST_COMMANDS
-
+//#define TEST_COMMANDS
+#define TEST_SERVO_CONTROL
 
 int main()
 {
   initUSART();
   USART3PrintString("*** WELCOME TO TURTLE COMMANDS ***\r\n\n");
   command cmd;
+  
+  initPWM();
+  
+  
   
 #ifdef TEST_COMMANDS
   
@@ -38,8 +43,18 @@ int main()
   printf("command: %s %d\n", cmd.str, cmd.value);
   printf("%s\n", checkCommandString(cmd.str)? "valid command" : "invalid command");
 
-#endif
+#endif //TEST_COMMANDS
 
+
+#ifdef TEST_SERVO_CONTROL
+   printf("Testing servo control:\n");
+   penUp();
+   printf("Pen up: 5 percent duty cycle\n");
+   penDown();
+   printf("Pen down: 3 percent duty cycle\n");
+#endif //TEST_SERVO_CONTROL
+   
+   
   //setting commandstring to null
   for(uint8_t i = 0; i < MAX_CHARACTERS ; i++)
   {
