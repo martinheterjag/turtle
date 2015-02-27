@@ -5,10 +5,21 @@ author Martin Eriksson
 
 
 Functions to control the step motors of the turtle.
+
+connections:
+pin 6   ---  Step1 (left motor)
+pin 7   ---  dir1 (left motor)
+pin 8   ---  MS1 (used to set step resolution)
+pin 9   ---  MS2 (used to set step resolution)
+pin 10  ---  step2 (right motor)
+pin 11  ---  dir 2 (right motor)
+pin 12  ---  Enable active low
+
 */
 
 #include "stepMotorControl.h"
 #include "turtleUtility.h"
+
 
 
 //***** INITIALIZE THE STEP MOTOR CONTROL *****
@@ -31,12 +42,16 @@ void initStepMotor(void)
   GPIO_WriteBit(GPIOC, GPIO_Pin_8, Bit_SET); 
   GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
   
+  // turns of stepmotors as default.
+  stepMotorsEnable(false);
+  
 }
 
 
 //***** turn right <arg> degrees ***** 
 void turnRightDegrees(uint16_t degrees)
 {
+  stepMotorsEnable(true);
   setDirection(RIGHT);
   
   //distance between the wheels 120 mm
@@ -45,12 +60,15 @@ void turnRightDegrees(uint16_t degrees)
   {
     goOneStep();
   }
+  
+  stepMotorsEnable(false);
 }
 
 
 //***** turn left <arg> degrees ***** 
 void turnLeftDegrees(uint16_t degrees)
 {
+  stepMotorsEnable(true);
   setDirection(LEFT);
   
   //distance between the wheels 120 mm
@@ -59,20 +77,27 @@ void turnLeftDegrees(uint16_t degrees)
   {
     goOneStep();
   }
+  
+  stepMotorsEnable(false);
 }
 
 
 //***** Moves forward <arg> distance in mm *****
 void moveForward(uint16_t mm)
 {
+  stepMotorsEnable(true);
   setDirection(FORWARD);
+  
   for(int i = 0; i < mm2steps(mm); i++)
   {
     goOneStep();
   }
   
+  stepMotorsEnable(false);
 }
 
+
+//***** converts millimeter to steps *****
 uint16_t mm2steps(uint16_t mm)
 {
   //one step is 0.45 degrees
@@ -90,6 +115,9 @@ uint16_t mm2steps(uint16_t mm)
 //       move forward or turn left/right
 void setDirection(direction dir)
 {
+  // recomended to wait 1/10 second before switching direction
+  delay(100);
+  
   //pin7 left step motor pin11 right step motor
   switch(dir)
   {
@@ -106,7 +134,6 @@ void setDirection(direction dir)
     GPIO_WriteBit(GPIOC, GPIO_Pin_11, Bit_SET); 
     break;
   }
-
 }
 
 
@@ -121,4 +148,17 @@ void goOneStep()
   delay(1);
   GPIO_WriteBit(GPIOC, GPIO_Pin_6, Bit_RESET);
   GPIO_WriteBit(GPIOC, GPIO_Pin_10, Bit_RESET);
+}
+
+//***** enable - reversed to be active high *****
+void stepMotorsEnable(bool en)
+{
+  if(!en)
+  {
+    GPIO_WriteBit(GPIOC, GPIO_Pin_12, Bit_SET);
+  }
+  if(en)
+  {
+    GPIO_WriteBit(GPIOC, GPIO_Pin_12, Bit_RESET);
+  }
 }

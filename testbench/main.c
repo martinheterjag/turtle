@@ -2,6 +2,7 @@
 #include "main.h"
 #include "USART.h"
 #include "servoControl.h"
+#include "turtleUtility.h"
 #include <stdbool.h>
 #include <stdio.h>
 

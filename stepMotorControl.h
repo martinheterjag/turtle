@@ -19,6 +19,7 @@ typedef enum{
 #include "stm32f30x_it.h"
 #include "stm32f30x.h"
 #include "stm32f3_discovery.h"
+#include <stdbool.h>
 
 //functions
 void initStepMotor(void);
@@ -28,7 +29,7 @@ void moveForward(uint16_t mm);
 uint16_t mm2steps(uint16_t mm);
 void setDirection(direction dir);
 void goOneStep();
-
+void stepMotorsEnable(bool en);
 
 
 
