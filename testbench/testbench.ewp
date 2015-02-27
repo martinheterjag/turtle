@@ -60,8 +60,8 @@
         </option>
         <option>
           <name>FPU</name>
-          <version>3</version>
-          <state>5</state>
+          <version>4</version>
+          <state>6</state>
         </option>
         <option>
           <name>OGCoreOrChip</name>
@@ -87,7 +87,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>7.30.4.8186</state>
+          <state>7.40.1.8463</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -1007,7 +1007,7 @@
         </option>
         <option>
           <name>FPU</name>
-          <version>3</version>
+          <version>4</version>
           <state>0</state>
         </option>
         <option>
@@ -1909,10 +1909,16 @@
       <name>$PROJ_DIR$\..\servoControl.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\stepMotorControl.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\stm32f30x_conf.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\stm32f30x_it.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\turtleUtility.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\USART.h</name>
@@ -1948,10 +1954,16 @@
       <name>$PROJ_DIR$\..\servoControl.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\stepMotorControl.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\stm32f30x_it.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\system_stm32f30x.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\turtleUtility.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\USART.c</name>

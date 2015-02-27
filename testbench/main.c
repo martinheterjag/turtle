@@ -6,7 +6,9 @@
 #include <stdio.h>
 
 //#define TEST_COMMANDS
-#define TEST_SERVO_CONTROL
+//#define TEST_SERVO_CONTROL
+
+
 
 int main()
 {
@@ -15,6 +17,8 @@ int main()
   command cmd;
   
   initPWM();
+
+  initSystemTimer();
   
   
   

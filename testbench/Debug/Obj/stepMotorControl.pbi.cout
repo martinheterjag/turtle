@@ -1,4 +1,4 @@
-"C:\Users\Martin\Documents\IAR workspace\turtle\servoControl.c"
+"C:\Users\Martin\Documents\IAR workspace\turtle\stepMotorControl.c"
 -std=c99
 -ferror-limit=100
 -I
