@@ -14,10 +14,11 @@ KTH, course IS1300 Inbyggda System
 #include "stm32f30x_it.h"
 #include <string.h>
 #include "commands.h"
+#include "stateMachine.h"
 
 
 //functions
-void checkUSART3Input(command* cmd);
+state checkUSART3Input(command* cmd);
 void initUSART(void);
 void USART3InterruptEvent(void);
 void USART3Print(uint8_t ch);

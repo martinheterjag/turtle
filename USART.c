@@ -16,6 +16,7 @@ KTH, course IS1300 Inbyggda System
 #include <stdlib.h>
 #include "stm32f30x.h"
 #include "stm32f3_discovery.h"
+#include "turtleUtility.h"
 
 
 
@@ -25,10 +26,10 @@ static volatile char recievedCommand[MAX_CHARACTERS];
 static volatile uint8_t charCount = 0;
 
 //++++ handles data if any new input data! ++++
-void checkUSART3Input(command* cmd)
+state checkUSART3Input(command* cmd)
 {
   //declare the command struct
-  
+  state nextState = STATE_WAIT_FOR_COMMAND;
   
   if(newData)
   {
@@ -51,12 +52,13 @@ void checkUSART3Input(command* cmd)
       parseString(cmd);
 
       // check if valid command.
-      //&&&&&&&&&&&&&& SAVE NEXT STATE WHILE CHECKING THIS &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-      //&&&&&&&&&&&&&& MAKE checkCommandString() RETURN STATE OR SOMETHING &&&&&&&&&&&&&&&&&&&&&&&&
-      if(checkCommandString(cmd->str))
+      if(checkCommandString(cmd->str, &nextState))
       {
+        
+        
         //confirm command
         USART3PrintString("valid command \n\r");
+        
         
         //cap value at 999 because easier than making bigger + bigger numbers is not necessary for this application
         if(cmd->value>999)
@@ -68,24 +70,25 @@ void checkUSART3Input(command* cmd)
         // echo command
         USART3PrintString(cmd->str);
         USART3PrintString(" ");
-
+        
         //convert value to string and print it
         char temp[4] = { (cmd->value>99? (cmd->value/100)   + '0' : ' '),
                          (cmd->value>9?  (cmd->value/10)%10 + '0' : ' '), 
                          (               (cmd->value % 10)  + '0'), 
                          '\0'};
-        USART3PrintString(strcat(temp, "\n\n\r"));
+        USART3PrintString(temp);
+        USART3PrintString("\n\n\r");
       }
       else
       {
-        // aw, didn't work mate ;(
         USART3PrintString("invalid command \n\r");
       }
       
     }
     newData = false;
   }
-  
+  //test print: printf("\n\nreturning this value: %d \n\n", nextState);
+  return nextState;
 }
 
 
@@ -170,6 +173,8 @@ void USART3InterruptEvent(void)
 //++++ sends a character on USART3 ++++
 void USART3Print(uint8_t ch)
 { 
+  //short delay to not fill buffer of radio.
+  delay(10);
   while(!USART_GetFlagStatus(USART3,USART_FLAG_TXE)); 
   USART_SendData(USART3, ch);
 }

@@ -2116,6 +2116,9 @@
       <name>$PROJ_DIR$\..\servoControl.h</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\stateMachine.h</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\stepMotorControl.h</name>
     </file>
     <file>

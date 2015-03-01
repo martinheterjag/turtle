@@ -11,40 +11,46 @@ author Martin Eriksson
 
 
 //+++ returns true if string is a valid command +++
-bool checkCommandString(char* str)
+bool checkCommandString(char* str, state* nextState)
 {
   
   //list of valid commands, (strcmp returns 0 if strings are equal).
   if      (strcmp(str, "forward") == 0)
   {
+    *nextState = STATE_FORWARD;
     return true;
   }
   else if (strcmp(str, "right") == 0)
   {
+    *nextState = STATE_RIGHT;
     return true;
   }
   else if (strcmp(str, "left") == 0)
   {
+    *nextState = STATE_LEFT;
     return true;
   }
   else if (strcmp(str, "penup") == 0)
   {
+    *nextState = STATE_PENUP;
     return true;
   }
   else if (strcmp(str, "pendown") == 0)
   {
+    *nextState = STATE_PENDOWN;
     return true;
   }
-  else if (strcmp(str, "repeat") == 0)
+ /* else if (strcmp(str, "repeat") == 0)
   {
     return true;
   }
   else if (strcmp(str, "to") == 0)
   {
     return true;
-  }
+  }*/
   else
   {
+
     return false;
   }
 }
@@ -55,7 +61,7 @@ void parseString(command* cmd)
 {
   cmd->value = 0;
   char temp[MAX_CHARACTERS];
-  char valueStr[MAX_CHARACTERS] = NULL;
+  char valueStr[MAX_CHARACTERS];
 
   bool done = false;
   uint16_t i, j, k;
@@ -63,6 +69,7 @@ void parseString(command* cmd)
   for(i = 0; i < MAX_CHARACTERS; i++)
   {
     temp[i] = '\0';
+    valueStr[i] = '\0';
   }
   
   //go thru the string to find space

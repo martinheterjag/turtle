@@ -2,27 +2,30 @@
 #include "main.h"
 #include "USART.h"
 #include "servoControl.h"
+#include "stepMotorControl.h"
+#include "stateMachine.h"
 #include "turtleUtility.h"
 #include <stdbool.h>
 #include <stdio.h>
 
 //#define TEST_COMMANDS
 //#define TEST_SERVO_CONTROL
+//#define TEST_STEP_MOTOR_CONTROL
+
 
 
 
 int main()
 {
+  initSystemTimer();
   initUSART();
+  initPWM();
+  initStepMotor();
+  
   USART3PrintString("*** WELCOME TO TURTLE COMMANDS ***\r\n\n");
   command cmd;
-  
-  initPWM();
 
-  initSystemTimer();
-  
-  
-  
+//##############################################################################
 #ifdef TEST_COMMANDS
   
   //setting commandstring to null
@@ -49,8 +52,9 @@ int main()
   printf("%s\n", checkCommandString(cmd.str)? "valid command" : "invalid command");
 
 #endif //TEST_COMMANDS
+//##############################################################################
 
-
+//##############################################################################
 #ifdef TEST_SERVO_CONTROL
    printf("Testing servo control:\n");
    penUp();
@@ -58,17 +62,67 @@ int main()
    penDown();
    printf("Pen down: 3 percent duty cycle\n");
 #endif //TEST_SERVO_CONTROL
+//##############################################################################   
    
+//##############################################################################
+#ifdef TEST_STEP_MOTOR_CONTROL
    
+#endif //TEST_STEP_MOTOR_CONTROL
+//##############################################################################
+
+ 
   //setting commandstring to null
   for(uint8_t i = 0; i < MAX_CHARACTERS ; i++)
   {
     cmd.str[i] = '\0';
   }
   
-  
+  // variables for state machine
+  state currentState, nextState;
+  nextState = STATE_WAIT_FOR_COMMAND;
   while (1)
   {
-    checkUSART3Input(&cmd);
+    currentState = nextState;
+    
+    switch(currentState)
+    {
+    case STATE_WAIT_FOR_COMMAND:
+      nextState = checkUSART3Input(&cmd);
+      break;
+      
+    case STATE_FORWARD:
+      printf("going forward %d mm\n", cmd.value);
+      moveForward(cmd.value);
+      nextState = STATE_WAIT_FOR_COMMAND;
+      break;
+      
+    case STATE_RIGHT:
+      printf("turning right %d degrees\n", cmd.value);
+      turnRightDegrees(cmd.value);
+      nextState = STATE_WAIT_FOR_COMMAND;
+      break;
+      
+    case STATE_LEFT:
+      printf("turning left %d degrees\n", cmd.value);
+      turnLeftDegrees(cmd.value);
+      nextState = STATE_WAIT_FOR_COMMAND;
+      break;
+      
+    case STATE_PENUP:
+      printf("pen is now up, drawing disabled!\n");
+      penUp();
+      nextState = STATE_WAIT_FOR_COMMAND;
+      break;
+      
+    case STATE_PENDOWN:
+      printf("pen is now down, ready to draw\n");
+      penDown();
+      nextState = STATE_WAIT_FOR_COMMAND;
+      break;
+    default:
+      printf("ERROR: %d\n", currentState);
+      nextState = STATE_WAIT_FOR_COMMAND;
+    }
+    
   }
 }
