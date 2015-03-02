@@ -63,7 +63,7 @@ void parseString(command* cmd)
   char temp[MAX_CHARACTERS];
   char valueStr[MAX_CHARACTERS];
 
-  bool done = false;
+  bool str_done = false, val_done = false;
   uint16_t i, j, k;
   
   for(i = 0; i < MAX_CHARACTERS; i++)
@@ -76,7 +76,22 @@ void parseString(command* cmd)
   for(i = 0; i < MAX_CHARACTERS; i++)
   {
     
-    if ((cmd->str[i] == ' ' || cmd->str[i] == '\r') && !done)
+    //if the string is saved as a command, get the value
+    if(str_done)
+    {
+      //if any number, save it as the value of the command
+      if (!val_done && (cmd->str[i] >= '0' && cmd->str[i] <= '9'))
+      {
+        valueStr[k] = cmd->str[i];
+        k++;
+      }else
+      {
+        val_done = true;
+      }
+    }
+    
+    
+    if ((cmd->str[i] == ' ' || cmd->str[i] == '\r') && !str_done)
     {
       //copy first word to temp string
       for(j = 0; j < i ; j++)
@@ -84,15 +99,11 @@ void parseString(command* cmd)
         temp[j] = cmd->str[j];
       }
       temp[i] = '\0';
-      done = true;
+      str_done = true;
     }
     
-    //if any number, save it as the value of the command
-    if (cmd->str[i] >= '0' && cmd->str[i] <= '9')
-    {
-      valueStr[k] = cmd->str[i];
-      k++;
-    }
+
+    
     
   }
   //save the value in the struct

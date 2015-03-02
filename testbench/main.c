@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//#define TEST_COMMANDS
+#define TEST_COMMANDS
 //#define TEST_SERVO_CONTROL
 //#define TEST_STEP_MOTOR_CONTROL
 
@@ -33,24 +33,30 @@ int main()
   {
     cmd.str[i] = '\0';
   }
+  state test = STATE_FORWARD;
+  /*printf("Testing commands:\n");
   
-  printf("Testing commands:\n");
-  
-  printf("forward: %d\n", checkCommandString("forward"));
-  printf("right: %d\n", checkCommandString("right"));
-  printf("left: %d\n", checkCommandString("left"));
-  printf("penup: %d\n", checkCommandString("penup"));
-  printf("pendown: %d\n", checkCommandString("pendown"));
-  printf("repeat: %d\n", checkCommandString("repeat"));
-  printf("to: %d\n", checkCommandString("to"));
-  
-  strcpy(cmd.str,"forward 200");
+  printf("forward: %d\n", checkCommandString("forward",&test));
+  printf("right: %d\n", checkCommandString("right",&test));
+  printf("left: %d\n", checkCommandString("left",&test));
+  printf("penup: %d\n", checkCommandString("penup",&test));
+  printf("pendown: %d\n", checkCommandString("pendown",&test));
+  printf("repeat: %d\n", checkCommandString("repeat",&test));
+  printf("to: %d\n", checkCommandString("to",&test));
+  */
+  strcpy(cmd.str,"forward 200 20 20 ");
   cmd.value = 100;
   
   parseString(&cmd);
   printf("command: %s %d\n", cmd.str, cmd.value);
-  printf("%s\n", checkCommandString(cmd.str)? "valid command" : "invalid command");
+  printf("%s\n", checkCommandString(cmd.str,&test)? "valid command" : "invalid command");
 
+  strcpy(cmd.str,"right 200");
+  cmd.value = 100;
+  
+  parseString(&cmd);
+  printf("command: %s %d\n", cmd.str, cmd.value);
+  printf("%s\n", checkCommandString(cmd.str,&test)? "valid command" : "invalid command");
 #endif //TEST_COMMANDS
 //##############################################################################
 
