@@ -91,36 +91,41 @@ int main()
       break;
       
     case STATE_FORWARD:
-      printf("going forward %d mm\n", cmd.value);
+      USART3PrintString("going forward\n");
       moveForward(cmd.value);
       nextState = STATE_WAIT_FOR_COMMAND;
+      USART3PrintString("done going forward\n");
       break;
       
     case STATE_RIGHT:
-      printf("turning right %d degrees\n", cmd.value);
+      
       turnRightDegrees(cmd.value);
       nextState = STATE_WAIT_FOR_COMMAND;
+      USART3PrintString("done turning right\n");
       break;
       
     case STATE_LEFT:
-      printf("turning left %d degrees\n", cmd.value);
+      //printf("turning left %d degrees\n", cmd.value);
       turnLeftDegrees(cmd.value);
       nextState = STATE_WAIT_FOR_COMMAND;
+      USART3PrintString("done turning left\n");
       break;
       
     case STATE_PENUP:
-      printf("pen is now up, drawing disabled!\n");
+      //printf("pen is now up, drawing disabled!\n");
       penUp();
       nextState = STATE_WAIT_FOR_COMMAND;
+      USART3PrintString("pen is now up\n");
       break;
       
     case STATE_PENDOWN:
-      printf("pen is now down, ready to draw\n");
+      //printf("pen is now down, ready to draw\n");
       penDown();
       nextState = STATE_WAIT_FOR_COMMAND;
+      USART3PrintString("pen is now down\n");
       break;
     default:
-      printf("ERROR: %d\n", currentState);
+      USART3PrintString("ERROR!!!\n");
       nextState = STATE_WAIT_FOR_COMMAND;
     }
     

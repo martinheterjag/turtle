@@ -35,7 +35,11 @@ void initStepMotor(void)
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
   GPIO_Init(GPIOC, &GPIO_InitStructure);
+  
+  
   
   // set to eigth step mode. (0x02)
   // step angle = 3.6 => 3.6/8 = 0.45 degrees per 1/8step
@@ -43,8 +47,7 @@ void initStepMotor(void)
   GPIO_WriteBit(GPIOC, GPIO_Pin_9, Bit_SET);
   
   // turns of stepmotors as default.
-  stepMotorsEnable(false);
-  
+  //stepMotorsEnable(false);
 }
 
 
@@ -53,10 +56,11 @@ void turnRightDegrees(uint16_t degrees)
 {
   stepMotorsEnable(true);
   setDirection(RIGHT);
-  
+  float mm = degrees * 1.047;
+
   //distance between the wheels 120 mm
   //circumference is 120*pi = 376.8 mm => 1.047 mm per degree
-  for(int i = 0; i < mm2steps(degrees * (uint16_t)1.047f); i++)
+  for(int i = 0; i < mm2steps( (uint16_t) mm); i++)
   {
     goOneStep();
   }
@@ -70,10 +74,11 @@ void turnLeftDegrees(uint16_t degrees)
 {
   stepMotorsEnable(true);
   setDirection(LEFT);
-  
+  float mm = degrees * 1.047;
+
   //distance between the wheels 120 mm
   //circumference is 120*pi = 376.8 mm => 1.047 mm per degree
-  for(int i = 0; i < mm2steps(degrees * (uint16_t)1.047f); i++)
+  for(int i = 0; i < mm2steps( (uint16_t) mm); i++)
   {
     goOneStep();
   }
@@ -86,11 +91,17 @@ void turnLeftDegrees(uint16_t degrees)
 void moveForward(uint16_t mm)
 {
   stepMotorsEnable(true);
-  setDirection(FORWARD);
+  
+  //setDirection(FORWARD);
+  delay(100);
+  GPIO_WriteBit(GPIOC, GPIO_Pin_7, Bit_SET); 
+  GPIO_WriteBit(GPIOC, GPIO_Pin_11, Bit_SET); 
+  
   
   for(int i = 0; i < mm2steps(mm); i++)
   {
     goOneStep();
+    
   }
   
   stepMotorsEnable(false);
@@ -101,13 +112,13 @@ void moveForward(uint16_t mm)
 uint16_t mm2steps(uint16_t mm)
 {
   //one step is 0.45 degrees
-  //wheel diameter is 47 mm
-  float circumference = 47.0 * 3.14; // 147.58
-  float degree = circumference / 360.0; //0,4099444444...
-  float step = degree * 0.45; // 0,184475
+  //wheel diameter is 47 mm maths gives 0.18
+  float step = 0.184475f;
+    
+  float stepsToMove = mm / step;
   
-  uint16_t stepsToMove = mm * (uint16_t)step;
-  return stepsToMove;
+  //printf("steps to move: %f", stepsToMove);
+  return(uint16_t)stepsToMove;
 }
 
 
@@ -140,7 +151,6 @@ void setDirection(direction dir)
 //***** rotates both step motors one step *****
 void goOneStep()
 {
-  delay(1);
   //left motor
   GPIO_WriteBit(GPIOC, GPIO_Pin_6, Bit_SET);
   //right motor
@@ -148,6 +158,7 @@ void goOneStep()
   delay(1);
   GPIO_WriteBit(GPIOC, GPIO_Pin_6, Bit_RESET);
   GPIO_WriteBit(GPIOC, GPIO_Pin_10, Bit_RESET);
+  delay(1);
 }
 
 //***** enable - reversed to be active high *****

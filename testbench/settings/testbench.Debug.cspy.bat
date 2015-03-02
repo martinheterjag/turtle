@@ -19,22 +19,6 @@
 @REM 
 
 
-@echo off 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\bin\armproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\bin\armstlink.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\bin\armbat.dll" --device_macro "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\config\debugger\ST\STM32F3xx.dmac" --flash_loader "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\config\flashloader\ST\FlashSTM32F3xxC.board" --backend -B "--endian=little" "--cpu=Cortex-M4F" "--fpu=None" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\arm\CONFIG\debugger\ST\STM32F303xC.ddf" "--semihosting" "--device=STM32F303xC" "--drv_interface=SWD" "--stlink_reset_strategy=0,0" "--drv_swo_clock_setup=72000000,0,2000000" 
 
-if not "%1" == "" goto debugFile 
 
-@echo on 
-
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Martin\Documents\IAR workspace\turtle\testbench\settings\testbench.Debug.general.xcl" --backend -f "C:\Users\Martin\Documents\IAR workspace\turtle\testbench\settings\testbench.Debug.driver.xcl" 
-
-@echo off 
-goto end 
-
-:debugFile 
-
-@echo on 
-
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\Martin\Documents\IAR workspace\turtle\testbench\settings\testbench.Debug.general.xcl" "--debug_file=%1" --backend -f "C:\Users\Martin\Documents\IAR workspace\turtle\testbench\settings\testbench.Debug.driver.xcl" 
-
-@echo off 
-:end
