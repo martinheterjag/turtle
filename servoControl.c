@@ -1,9 +1,12 @@
-/*
+/****************************************************
 servoControl.c
+Author  Martin Eriksson
+Date    2015-03-10
 
-author Martin Eriksson
+Brief   Handles the PWM signal for the servo that controls if the pen
+        is up or down.
 
-*/
+****************************************************/
 
 #include "servoControl.h"
 

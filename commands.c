@@ -1,9 +1,13 @@
-/*
+/*****************************************************
 commands.c
 
-author Martin Eriksson
+Author  Martin Eriksson
+Date    2015-03-10
 
-*/
+Brief   Functions to handle the commands and setting next state for 
+        the statemachine.
+
+*****************************************************/
 
 #include <string.h>
 #include <stdlib.h>

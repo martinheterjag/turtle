@@ -1,3 +1,16 @@
+/**************************************************************
+Author: Martin Eriksson
+Date:   2015-03-10
+Brief:  Test program for turtle robot project, made for a programming
+        course with focus on embedded systems at KTH
+
+        The test program checks all the commands, the PWM signal for the servo
+        To test commands and servo make sure the test defines are not commented
+        out. After the test phase it goes into the main loop that is identical to
+        the main programs main loop for testing of the final product.
+
+**************************************************************/
+
 #include "commands.h"
 #include "main.h"
 #include "USART.h"
@@ -8,9 +21,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#define TEST_COMMANDS
-//#define TEST_SERVO_CONTROL
-//#define TEST_STEP_MOTOR_CONTROL
+//#define TEST_COMMANDS
+#define TEST_SERVO_CONTROL
 
 
 
@@ -34,7 +46,7 @@ int main()
     cmd.str[i] = '\0';
   }
   state test = STATE_FORWARD;
-  /*printf("Testing commands:\n");
+  printf("Testing commands:\n");
   
   printf("forward: %d\n", checkCommandString("forward",&test));
   printf("right: %d\n", checkCommandString("right",&test));
@@ -43,7 +55,7 @@ int main()
   printf("pendown: %d\n", checkCommandString("pendown",&test));
   printf("repeat: %d\n", checkCommandString("repeat",&test));
   printf("to: %d\n", checkCommandString("to",&test));
-  */
+  
   strcpy(cmd.str,"forward 200 20 20 ");
   cmd.value = 100;
   
@@ -70,11 +82,6 @@ int main()
 #endif //TEST_SERVO_CONTROL
 //##############################################################################   
    
-//##############################################################################
-#ifdef TEST_STEP_MOTOR_CONTROL
-   
-#endif //TEST_STEP_MOTOR_CONTROL
-//##############################################################################
 
  
   //setting commandstring to null

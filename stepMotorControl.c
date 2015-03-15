@@ -1,21 +1,21 @@
-/*
+/****************************************************
 stepMotorControl.c
 
-author Martin Eriksson
+Author  Martin Eriksson
+Date    2015-03-10
 
+Brief   Functions to control the step motors of the turtle.
 
-Functions to control the step motors of the turtle.
+        connections:
+        pin 6   ---  Step1 (left motor)
+        pin 7   ---  dir1 (left motor)
+        pin 8   ---  MS1 (used to set step resolution)
+        pin 9   ---  MS2 (used to set step resolution)
+        pin 10  ---  step2 (right motor)
+        pin 11  ---  dir 2 (right motor)
+        pin 12  ---  Enable active low
 
-connections:
-pin 6   ---  Step1 (left motor)
-pin 7   ---  dir1 (left motor)
-pin 8   ---  MS1 (used to set step resolution)
-pin 9   ---  MS2 (used to set step resolution)
-pin 10  ---  step2 (right motor)
-pin 11  ---  dir 2 (right motor)
-pin 12  ---  Enable active low
-
-*/
+****************************************************/
 
 #include "stepMotorControl.h"
 #include "turtleUtility.h"

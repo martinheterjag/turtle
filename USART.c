@@ -1,16 +1,19 @@
-/*
-Author: Martin Eriksson
+/******************************************************************
+Author  Martin Eriksson
+Date    2015-03-10
 
-Uses functions from: 
-stm32f30x_gpio.c stm32f30x_misc.c 
-stm32f30x_rcc.c stm32f30x_uart.c
+Brief
+        Uses functions from: 
+        stm32f30x_gpio.c stm32f30x_misc.c 
+        stm32f30x_rcc.c stm32f30x_uart.c
 
-needs function void USART3_IRQHandler(void) in stm32f30x_it.c
-to handle the interrupt from USART Tx
-  
-USART.c for turtle project
-KTH, course IS1300 Inbyggda System
-*/
+        needs function void USART3_IRQHandler(void) in stm32f30x_it.c
+        to handle the interrupt from USART Tx
+          
+        USART.c for turtle project
+        KTH, course IS1300 Inbyggda System
+
+*******************************************************************/
 #include "USART.h"
 #include <stdbool.h>
 #include <stdlib.h>

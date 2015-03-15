@@ -1,8 +1,12 @@
-/*
+/*******************************************************************
 turtleUtility.c
 
-author Martin Eriksson
-*/
+Author  Martin Eriksson
+Date    2015-03-10
+
+Brief   Utility functions for the turtle, at the moment there is only
+        functionality for delays and timings.
+*********************************************************************/
 
 #include "turtleUtility.h"
 
